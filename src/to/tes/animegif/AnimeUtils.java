@@ -10,7 +10,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Movie;
-import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -41,11 +40,11 @@ public class AnimeUtils extends Activity {
      * @param start
      */
     static public void startDrawableAnimation(Drawable d, boolean start) {
-        if (d instanceof AnimationDrawable) {
+        if (d instanceof AnimatedGifDrawable) {
             if (start) {
-                ((AnimationDrawable)d).start();
+                ((AnimatedGifDrawable)d).resume();
             } else {
-                ((AnimationDrawable)d).stop();
+                ((AnimatedGifDrawable)d).pause();
             }
         }
     }
@@ -108,7 +107,7 @@ public class AnimeUtils extends Activity {
         int duration = movie.duration();
         int width = movie.width(), height = movie.height();
 
-        AnimationDrawable result = new AnimationDrawable();
+        AnimatedGifDrawable result = new AnimatedGifDrawable();
         result.setOneShot(false); // for loop
 
         Drawable frame = null;
